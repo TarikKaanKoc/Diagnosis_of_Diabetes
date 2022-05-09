@@ -4,7 +4,6 @@ Comment lines have been added step by step within the project. (In Turkish Langu
 
 ---
 ### Şeker Hastalığı Teşhisi Projesi :
-  <img algin = "center" src="Diabetes_image.jpeg">
 
 * Proje ile ilgili gerekli bilgiler .ipynb dosyasında yer almaktadır. 
 * Proje kapsamında kullanılan algoritma K-Nearest Neighbors algoritmasıdır.
@@ -18,7 +17,8 @@ K-En Yakın Komşu Algoritması (veya KNN), hem sınıflandırma hem de regresyo
 
 ###  K-Nearest Neighbors Algoritması Neden Öğrenilmeli? :
 
-K-En Yakın Komşu Algoritması, yeni başlayanların öğrenmesi için harika bir makine öğrenimi algoritmasıdır.
+Öncelikle: Hem Sınıflandırma hem de Regresyon için kullanılır
+Yeni noktanın içine düşeceği kümeyi tahmin etmek için özellik benzerliğini kullanır.
 
 KNN algoritmasının öğrenmek için harika olmasının üç sebebine bakalım:
 
@@ -28,13 +28,59 @@ KNN algoritmasının öğrenmek için harika olmasının üç sebebine bakalım:
 
 ###  K-Nearest Neighbors Algoritması Nasıl Çalışır? :
 
-K-En Yakın Komşu algoritması, en benzer komşularına bakarak yeni bir veri noktası sınıfı (sınıflandırma durumunda) veya değer (gerileme durumunda) hesaplayarak çalışır ve öyle bir sonuca varır. Hangi veri noktalarının en benzer olduğunu, genellikle  Öklid mesafesi veya Manhattan mesafesi gibi bir mesafe hesaplaması kullanılarak belirlemektedir.
+Gerçek hayattan bir örnek alalım ve anlayalım:
 
-Bir makine öğrenimi uzmanı olarak aşağıdakileri belirlemek sizin işiniz:
+Yeni bir mahalleye taşındınız ve komşularınızla arkadaş olmak istiyorsunuz. Komşularınızla sosyalleşmeye başlarsınız. Düşüncelerinize, ilgi alanlarınıza ve hobilerinize uygun komşular seçmeye karar veriyorsunuz. Burada düşünme, ilgi ve hobi özelliklerdir. İlgi, hobi ve düşünce benzerliğine göre mahalle arkadaş çevrenize karar verirsiniz. Bu, KNN'nin nasıl çalıştığına benzer
+
+### K nedir, K en yakın komşu?
+
+K, yeni veri noktası için benzer komşuları tanımlamak için kullanılan bir sayıdır.
+Yeni mahallemizdeki arkadaş çevresi örneğimize atıfta bulunarak. Ortak düşünce veya hobilere göre çok yakın arkadaş olmasını istediğimiz 3 komşu seçiyoruz. Bu durumda K, 3'tür.
+KNN, yeni veri noktasının nereye ait olduğuna karar vermek için en yakın K komşusunu alır. Bu karar, özellik benzerliğine dayanmaktadır.
+
+Bir makine öğrenimi projesini yürütüyorsanız ve KNN Algoritmaasını kullanıyorsanız aşağıdakileri kritik maddeleri belirlemek sizin işiniz:
 
 * Hangi benzerlik ölçüsünün kullanılacağı...
 * Bakılacak komşu sayısı (k)...
-* Verilerinizin hangi özellikleri (veya boyutları) en önemli olduğunu belirlemek...
+* Verilerinizin hangi özellikleri en önemli değerlendirme kriteri sayılır...
+* Ve benzeri etkenler...
+
+### K değerini nasıl seçeriz?
+
+  <img algin = "center" src="knn_image.png">
+
+* K'nin seçimi, KNN'den elde ettiğimiz sonuçlar üzerinde büyük bir etkiye sahiptir.
+
+* Test setini alabilir ve doğruluk oranını veya F1 puanını farklı K değerlerine karşı çizebiliriz.
+
+* K=1 olduğunda test seti için yüksek bir hata oranı görüyoruz. Dolayısıyla, k=1 olduğunda modelin fazla uyuştuğu sonucuna varabiliriz.
+
+* Yüksek bir K değeri için F1 puanının düşmeye başladığını görüyoruz. Test seti, k=5 olduğunda minimum hata oranına ulaşır. Bu, K-araçlarında kullanılan dirsek yöntemine çok benzer.
+
+* Test hata oranının dirseğindeki K değeri bize optimal K değerini verir.
+
+### KNN nasıl çalışır?
+
+Bir organizasyonda yaş ve deneyime sahibiz. Yaşı ve tecrübesi uygun olan yeni bir adayın maaşını tahmin etmek istiyoruz.
+
+* Adım 1: K için bir değer seçin. K tek sayı olmalıdır.
+* Adım 2: Yeni noktanın eğitim verilerinin her birine olan mesafesini bulun.
+* Adım 3:Yeni veri noktasına en yakın K komşuyu bulun.
+* Adım 4: Sınıflandırma için, k komşu arasında her kategorideki veri noktalarının sayısını sayın. Yeni veri noktası, en fazla komşuya sahip sınıfa ait olacaktır.
+
+Regresyon için, yeni veri noktasının değeri k komşunun ortalaması olacaktır.
+
+  <img algin = "center" src="knn_image2.png">
+
+
+### K-En Yakın Komuş Mesafesi Nasıl Hesaplanır?
+
+* Öklid mesafesi
+* Manhattan mesafesi
+* Hamming Mesafesi
+* Minkowski Mesafesi
+* Öklid uzaklığı, iki nokta arasındaki uzaklığın karesinin toplamının kareköküne eşittir. L2 normu olarak da bilinir.
+
 
 ###  K-Nearest Neighbors Algoritmasını Projemde Nasıl Kullanabilirim? :
 
